@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EdEase: An inclusive learning assistant.">
+    <title>EdEase | Inclusive Learning Assistant</title>
+
+    <!-- Google Fonts: Epilogue for headings, Inter for body (High readability) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Epilogue:wght@500;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- MSAL.js for Microsoft Auth -->
+    <script type="text/javascript" src="https://alcdn.msauth.net/browser/2.30.0/js/msal-browser.min.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="EdEase">
+    <meta property="og:description" content="Learning, explained the way you understand.">
+    <meta property="og:type" content="website">
+</head>
+
+<body>
+
+    <header class="app-header">
+        <div class="logo">EdEase</div>
+        <nav>
+            <!-- Sign In removed -->
+        </nav>
+    </header>
+
+    <main id="app-container">
+        <!-- SCREEN 1: LANDING -->
+        <section id="screen-landing" class="screen active">
+            <div class="hero-container">
+                <div class="hero-content centered">
+                    <h1 class="hero-title fade-in">Learning, explained the way you understand.</h1>
+                    <p class="hero-subtitle fade-in delay-1">
+                        Paste any topic and get explanations adapted to your learning style — simple, calm, and clear.
+                    </p>
+
+                    <div class="hero-actions fade-in delay-2">
+                        <button id="btn-start" class="btn-primary">Start Learning</button>
+                        <button id="btn-how-it-works" class="btn-text">See how it works</button>
+                    </div>
+
+                    <p class="hero-reassurance fade-in delay-2">
+                        Sign-in is optional. You can start learning without creating an account.
+                    </p>
+
+                    <div class="trust-signal fade-in delay-2">
+                        <span>✨ No labels. No pressure. Your learning, your way.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCREEN: HOW IT WORKS -->
+        <section id="screen-info" class="screen">
+            <div class="content-wrapper">
+                <div class="info-header centered">
+                    <h2>How EdEase Works</h2>
+                    <p class="hero-subtitle">Inclusive education technology designed for everyone.</p>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <span class="feature-icon">✨</span>
+                        <h3>Adaptation Engine</h3>
+                        <p>Our AI automatically restructures complex text into formats that match your cognitive
+                            preference—whether that's simple language, step-by-step lists, or focused summaries.</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">🧠</span>
+                        <h3>Cognitive Load Management</h3>
+                        <p>We reduce visual noise and information density to help you focus on what matters. No clutter,
+                            no distractions, just learning.</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">🔊</span>
+                        <h3>Multi-Sensory Support</h3>
+                        <p>Listen to any content with our built-in text-to-speech, or use visual analogies to grasp
+                            abstract concepts faster.</p>
+                    </div>
+                </div>
+
+                <div class="info-footer centered" style="margin-top: 4rem;">
+                    <button class="btn-primary nav-back-home">Start Learning Now</button>
+                    <button class="btn-text nav-back-home">Back to Home</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCREEN 2: INPUT -->
+        <section id="screen-input" class="screen">
+            <div class="content-wrapper">
+                <div class="step-indicator">Step 1 of 3</div>
+                <h2>What do you want to learn today?</h2>
+                <p class="instruction-text">Paste a paragraph from a textbook, an exam question, or just a topic.</p>
+
+                <div class="input-container">
+                    <textarea id="user-input"
+                        placeholder="Paste your text here... (e.g., 'Photosynthesis process' or a complex paragraph)"></textarea>
+
+                    <div class="quick-actions">
+                        <span class="label">Try a demo:</span>
+                        <button class="chip" data-demo="quantum">Quantum Physics</button>
+                        <button class="chip" data-demo="photosynthesis">Photosynthesis</button>
+                        <button class="chip" data-demo="history">French Revolution</button>
+                    </div>
+                </div>
+
+                <div class="button-row">
+                    <button class="btn-secondary nav-back">Back</button>
+                    <button id="btn-to-prefs" class="btn-primary" disabled>Next</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCREEN 3: PREFERENCES -->
+        <section id="screen-prefs" class="screen">
+            <div class="content-wrapper">
+                <div class="step-indicator">Step 2 of 3</div>
+                <h2>How does your brain prefer to work?</h2>
+                <p class="instruction-text">Select what helps you most. (You can change this anytime)</p>
+
+                <div class="prefs-grid">
+                    <button class="pref-card" data-pref="simple">
+                        <span class="icon">🌿</span>
+                        <span class="title">Keep it Simple</span>
+                        <span class="desc">No jargon. Short sentences.</span>
+                    </button>
+                    <button class="pref-card" data-pref="step-by-step">
+                        <span class="icon">🪜</span>
+                        <span class="title">Step-by-Step</span>
+                        <span class="desc">Break it down into a list.</span>
+                    </button>
+                    <button class="pref-card" data-pref="analogy">
+                        <span class="icon">💡</span>
+                        <span class="title">Use Examples</span>
+                        <span class="desc">Explain it with a real-world story.</span>
+                    </button>
+                    <button class="pref-card" data-pref="focus">
+                        <span class="icon">🎯</span>
+                        <span class="title">I Get Distracted</span>
+                        <span class="desc">Just the key facts. Nothing else.</span>
+                    </button>
+                    <button class="pref-card" data-pref="audio">
+                        <span class="icon">🎧</span>
+                        <span class="title">Read to Me</span>
+                        <span class="desc">I prefer listening over reading.</span>
+                    </button>
+                </div>
+
+                <div class="button-row">
+                    <button class="btn-secondary nav-back">Back</button>
+                    <button id="btn-process" class="btn-primary" disabled>Adapt Content</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCREEN 4: LOADING (Simulated) -->
+        <section id="screen-loading" class="screen">
+            <div class="content-wrapper centered">
+                <div class="loader-animation">
+                    <div class="pulse-circle"></div>
+                </div>
+                <h2 class="loading-text">Adapting content for you...</h2>
+                <p>Finding the calmest way to explain this.</p>
+            </div>
+        </section>
+
+        <!-- SCREEN 5: OUTPUT -->
+        <section id="screen-output" class="screen">
+            <div class="content-wrapper">
+                <div class="output-header">
+                    <div class="badge">Adapted for you</div>
+                    <div class="controls">
+                        <button id="btn-tts" class="icon-btn" aria-label="Listen to text">🔊 Listen</button>
+                        <button id="btn-compare" class="text-btn">Compare with Original</button>
+                    </div>
+                </div>
+
+                <div class="output-card">
+                    <div id="ai-result" class="result-content">
+                        <!-- Content injected via JS -->
+                    </div>
+                </div>
+
+                <!-- Comparison Modal / View -->
+                <div id="compare-view" class="compare-container hidden">
+                    <div class="compare-col original">
+                        <h3>Original</h3>
+                        <p id="original-text-display"></p>
+                    </div>
+                    <div class="compare-col arrow">→</div>
+                    <div class="compare-col adapted">
+                        <h3>Your Version</h3>
+                        <div id="adapted-preview"></div>
+                    </div>
+                </div>
+
+                <div class="impact-section">
+                    <p class="disclaimer">
+                        <strong>Note:</strong> This tool does not diagnose any conditions. It simply adjusts information
+                        to fit your preference. You are always in control.
+                    </p>
+                    <button class="btn-secondary" onclick="location.reload()">Start Over</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
